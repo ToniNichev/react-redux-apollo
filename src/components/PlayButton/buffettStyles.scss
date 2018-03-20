@@ -1,0 +1,51 @@
+@import '../../assets/stylesheets/utils/colors';
+@import './styles';
+
+.buffett.container {
+  border-top: 5px solid transparent;
+}
+
+.base {
+  .buffett & {
+    background-color: $straw;
+    font-size: 20px;
+    transition: none;
+
+    span {
+      border: 0;
+    }
+
+    a:hover &,
+    &:hover {
+      background-color: $tawny-port;
+
+      span {
+        border: 0;
+      }
+    }
+  }
+
+  .buffett.container:hover & {
+    background-color: $tawny-port;
+
+    span {
+      border: 0;
+    }
+  }
+}
+
+.featured {
+  .buffett & {
+    font-size: 18px;
+
+    @include minWidth(tablet) {
+      font-size: 32px;
+    }
+  }
+}
+
+.flyout {
+  .buffett & {
+    display: none;
+  }
+}

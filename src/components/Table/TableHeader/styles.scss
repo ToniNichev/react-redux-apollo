@@ -1,0 +1,39 @@
+.container {
+  width: 100%;
+  margin-bottom: 5px;
+  border-top: 6px solid $medium-blue;
+  min-height: 6px;
+
+  @include minWidth(tablet) {
+    margin-bottom: 10px;
+  }
+}
+
+.title {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 20px;
+  @include fontWeight('Black');
+  line-height: 24px;
+  text-transform: uppercase;
+  color: $medium-blue;
+
+  @include minWidth(small-desktop) {
+    font-size: 24px;
+    line-height: 29px;
+  }
+}
+
+.themeTitle {
+  composes: title;
+  color: $black;
+}
+
+.link {
+  text-decoration: none;
+
+  &:hover .title {
+      color: $middle-blue;
+    }
+}

@@ -1,0 +1,160 @@
+@import '../../assets/stylesheets/utils/grid';
+@import '../../assets/stylesheets/utils/colors';
+@import '../../assets/stylesheets/utils/typography';
+@import '../../assets/stylesheets/utils/mixins';
+
+.container {
+  @include fullyContained();
+  position: absolute;
+  border-top: 6px solid $gold;
+  z-index: 1;
+}
+
+.base {
+  background-color: $gold;
+  color: $white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -5px;
+  right: 0;
+  height: 40px;
+  width: 40px;
+  z-index: 1;
+  transition: all 0.35s linear;
+
+  @include minWidth(tablet) {
+    font-size: 14px;
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.featured {
+  composes: base;
+
+  @include minWidth(tablet) {
+    font-size: 22px;
+    height: 80px;
+    width: 80px;
+  }
+}
+
+[data-type='playlist'] {
+  box-shadow: inset 10 2px 10px #dcffa6, 10 2px 15px #000;
+}
+
+.icon {
+  z-index: 2;
+  display: block;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $gold;
+  transition: border 0.15s linear;
+
+  a:hover &,
+  a:focus &,
+  button:hover &,
+  button:focus &,
+  .base:hover & {
+    border: 2px solid $white;
+  }
+
+  @include minWidth(tablet) {
+    height: 40px;
+    width: 40px;
+
+    .featured & {
+      height: 60px;
+      width: 60px;
+      border: 2px solid $gold;
+    }
+  }
+}
+
+.flyout {
+  @include fontWeight('Black');
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 30px;
+  height: 100%;
+  width: 90px;
+  background-color: $gold;
+  font-size: 10px;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgba($dark-blue, 0);
+  transform: scaleX(0);
+  transform-origin: center right;
+  transition: color 0.15s linear, transform 0.15s linear 0.15s;
+
+  a:hover &,
+  a:focus &,
+  button:hover &,
+  button:focus &,
+  .base:hover & {
+    transform: scaleX(1);
+    color: $dark-blue;
+    transition: color 0.15s linear 0.25s, transform 0.25s linear;
+  }
+
+  @include minWidth(tablet) {
+    right: 50px;
+    width: 130px;
+    font-size: 12px;
+    letter-spacing: 2.2px;
+
+    .featured & {
+      right: 80px;
+      width: 200px;
+      font-size: 20px;
+    }
+  }
+}
+
+.playlistWrapper {
+  position: relative;
+}
+
+.playlist {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 35px;
+  width: 40px;
+  background-color: $white;
+  box-shadow: -5px 5px 0 0 $gold;
+
+  a:hover &,
+  a:focus &,
+  button:hover &,
+  button:focus &,
+  &:hover {
+    visibility: hidden;
+  }
+
+  @include minWidth(tablet) {
+    height: 45px;
+    width: 50px;
+  }
+}
+
+.featuredPlaylist {
+  composes: playlist;
+
+  @include minWidth(tablet) {
+    height: 75px;
+    width: 80px;
+  }
+}

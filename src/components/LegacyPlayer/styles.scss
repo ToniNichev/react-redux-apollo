@@ -1,0 +1,415 @@
+@import '../../assets/stylesheets/utils/grid';
+@import '../../assets/stylesheets/utils/colors';
+@import '../../assets/stylesheets/utils/typography';
+@import '../../assets/stylesheets/utils/mixins';
+
+.container {
+  width: auto;
+  background-color: $less-black;
+  padding: 20px;
+  border-top: 6px solid $green;
+  overflow: hidden;
+
+  @include minWidth(tablet) {
+    padding: 40px;
+  }
+
+  @include minWidth(small-desktop) {
+    padding-top: 30px;
+    padding-bottom: 40px;
+  }
+
+  @include minWidth(large-desktop) {
+    padding-top: 40px;
+    padding-bottom: 25px;
+  }
+
+  @include true-full-width();
+}
+
+.loggedInContainer {
+  composes: container;
+
+  @include minWidth(tablet) {
+    padding-top: 20px;
+  }
+}
+
+.main {
+  @include clearfix;
+
+  @include minWidth(large-desktop) {
+    &:after {
+      display: none;
+    }
+  }
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+}
+
+.videoContent {
+  @include fullyContained();
+  position: absolute;
+  background-color: $white;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+  }
+
+  // Gradient overlay.
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 58%;
+    background: linear-gradient(to top, $less-black, rgba($less-black, 0));
+  }
+}
+
+.videoPlayButton {
+  @include fullyContained();
+  display: block;
+  position: absolute;
+}
+
+.videoContainerMain {
+  @include minWidth(tablet) {
+    float: left;
+    width: calc(50% - #{$gutter/2});
+  }
+
+  @include minWidth(small-desktop) {
+    width: calc(55.55% - #{$gutter/2});
+  }
+
+  @include minWidth(large-desktop) {
+    width: calc(50% - #{$gutter/2});
+  }
+}
+
+.videoContainerStopped {
+  composes: videoContainerMain;
+  border-top: none;
+}
+
+.broadcastSelector {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  @include minWidth(tablet) {
+    justify-content: flex-start;
+  }
+}
+
+.broadcastSelectorlabel {
+  @include fontWeight('Bold');
+  color: $border-dark-grey;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1.25;
+  text-transform: uppercase;
+
+  @include minWidth(tablet) {
+    margin-right: 10px;
+  }
+}
+
+.selectContainer {
+  position: relative;
+}
+
+.list {
+  display: block;
+  width: 100%;
+  height: 24px;
+  border: 0;
+  background-color: transparent;
+}
+
+.toggleButton {
+  @include fullyContained();
+  @include fontWeight('Bold');
+  pointer-events: none;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 5px 0 0;
+  z-index: 1;
+  background-color: $less-black;
+  border-bottom: 1px solid $white;
+  border-radius: 0;
+  color: $white;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  :global .icon-markets {
+    display: none;
+  }
+
+  :global .icon-arrow-down-readmore {
+    margin-left: auto;
+
+    &:before {
+      font-size: 12px;
+      color: $white;
+    }
+  }
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  @include minWidth(tablet) {
+    float: left;
+    width: calc(50% - #{$gutter/2});
+    margin: 0 0 0 $gutter;
+  }
+
+  @include minWidth(small-desktop) {
+    width: calc(44.44% - #{$gutter/2});
+  }
+
+  @include minWidth(large-desktop) {
+    width: calc(50% - #{$gutter/2});
+  }
+}
+
+.probug {
+  display: block;
+  width: 42px;
+  margin-bottom: 15px;
+
+  img {
+    max-width: 100%;
+  }
+
+  @include minWidth(tablet) {
+    width: 37px;
+  }
+
+  @include minWidth(small-desktop) {
+    width: 52px;
+  }
+}
+
+.currentVideoInfo {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  @include minWidth(tablet) {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 5px 0 10px;
+  }
+}
+
+.liveNowLabel {
+  @include fontWeight('Bold');
+  color: $white;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+  position: relative;
+  display: block;
+  margin-bottom: 7px;
+  padding-left: 20px;
+
+  &:before {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    font-size: 14px;
+    color: $gold;
+  }
+
+  @include minWidth(small-desktop) {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+  }
+}
+
+.liveNowTime {
+  @include fontWeight('Bold');
+  color: $border-dark-grey;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1.25;
+  text-transform: uppercase;
+  display: block;
+
+  @include minWidth(small-desktop) {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.title {
+  @include fontWeight('Extrabold');
+  color: $white;
+  font-size: 28px;
+  line-height: 1.07;
+  margin: 0 0 10px;
+
+  @include minWidth(tablet) {
+    font-size: 30px;
+    line-height: 1.06;
+    margin-bottom: 20px;
+
+    .loggedInContainer & {
+      margin-bottom: 15px;
+    }
+  }
+
+  @include minWidth(small-desktop) {
+    font-size: 40px;
+    line-height: 1.1;
+    max-width: 410px;
+
+    .loggedInContainer & {
+      margin-bottom: 20px;
+    }
+  }
+
+  @include minWidth(large-desktop) {
+    font-size: 48px;
+    line-height: 1.02;
+  }
+}
+
+.description {
+  @include fontWeight('Semibold');
+  color: $mid-light-grey;
+  font-size: 14px;
+  line-height: 1.375;
+  margin: 0;
+
+  span {
+    @include fontWeight('Bold');
+    text-transform: uppercase;
+    color: $white;
+  }
+
+  @include minWidth(small-desktop) {
+    max-width: 300px;
+  }
+
+  @include minWidth(large-desktop) {
+    max-width: 520px;
+  }
+}
+
+.nonUserCallsToAction {
+  margin-top: 10px;
+
+  @include minWidth(tablet) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 20px;
+  }
+
+  @include minWidth(small-desktop) {
+    margin-top: 40px;
+  }
+}
+
+.button {
+  @include fontWeight('Bold');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid $white;
+  color: $white;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: all 0.25s linear;
+
+  &:hover,
+  &:focus {
+    background-color: $gold;
+    border-color: $gold;
+    color: $less-black;
+  }
+
+  @include minWidth(tablet) {
+    width: calc(50% - 10px);
+    max-width: 147px;
+    margin-top: 0;
+
+    &:last-child {
+      margin-left: 20px;
+    }
+  }
+}
+
+.fullScheduleLink {
+  @include fontWeight('Bold');
+  color: $white;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  margin: 30px auto 20px;
+
+  :global .icon-short-arrow-right {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 7px;
+    color: $gold;
+    font-size: 14px;
+    transition: transform 0.5s ease-out;
+  }
+
+  &:hover,
+  &:focus {
+    :global .icon-short-arrow-right {
+      transform: translateX(7px);
+      transition: transform 0.25s ease-in;
+    }
+  }
+
+  @include minWidth(tablet) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+  }
+}
+
+iframe {
+  border: none;
+  width: 100%;
+  height: 470px;
+  overflow: none;
+}

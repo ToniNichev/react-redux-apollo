@@ -1,0 +1,145 @@
+@import '../../../assets/stylesheets/utils/grid';
+@import '../../../assets/stylesheets/utils/colors';
+@import '../../../assets/stylesheets/utils/typography';
+@import '../../../assets/stylesheets/utils/mixins';
+
+.container {
+  margin-top: 10px;
+  clear: left;
+
+  @include minWidth(tablet) {
+    display: flex;
+    flex-direction: row;
+    margin: 30px -#{$gutter/2} 0;
+  }
+
+  @include minWidth(large-desktop) {
+    float: left;
+    clear: none;
+    width: calc(50% - #{$gutter/2});
+    margin: 20px 0 0 30px;
+  }
+}
+
+.videoContainer {
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+}
+
+.videoContent {
+  @include fullyContained();
+  position: absolute;
+  background-color: $white;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  // Gradient overlay.
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 58%;
+    background: linear-gradient(to top, $less-black, rgba($less-black, 0));
+  }
+}
+
+.link {
+  display: block;
+  margin-top: 20px;
+  overflow: hidden;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:hover,
+  &:focus {
+    .description {
+      text-decoration: underline;
+    }
+  }
+
+  .videoContainer {
+    float: left;
+    width: calc(50% - #{$gutter/2});
+  }
+
+  @include minWidth(tablet) {
+    max-width: calc(33.33% - #{$gutter});
+    min-width: calc(33.33% - #{$gutter});
+    margin: 0 $gutter/2;
+
+    .videoContainer {
+      width: 100%;
+      float: none;
+    }
+  }
+
+  @include minWidth(large-desktop) {
+    max-width: calc(33.33% - 20px);
+    min-width: calc(33.33% - 20px);
+    margin: 0 15px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.videoLength {
+  @include fontWeight('Black');
+  color: $yellow;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 1.67px;
+  text-transform: uppercase;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: inline-block;
+  vertical-align: middle;
+
+  @include minWidth(tablet) {
+    font-size: 12px;
+  }
+
+  time {
+    @include fontWeight('Bold');
+    color: $white;
+    display: inline-block;
+    margin-left: 10px;
+    letter-spacing: 1.2px;
+  }
+}
+
+.description {
+  @include fontWeight('Semibold');
+  color: $white;
+  font-size: 14px;
+  line-height: 1.375;
+  float: left;
+  width: calc(50% - #{$gutter/2});
+  margin: 0 0 0 $gutter;
+
+  @include minWidth(tablet) {
+    width: 100%;
+    float: none;
+    margin: 10px 0 0 0;
+  }
+}
